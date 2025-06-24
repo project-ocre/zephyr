@@ -911,6 +911,8 @@ static int littlefs_init_fs(struct fs_littlefs *fs, void *dev_id, int flags)
 		return ret;
 	}
 
+	k_sleep(K_MSEC(50));
+
 	ret = littlefs_init_cfg(fs, flags);
 	if (ret < 0) {
 		return ret;
@@ -1135,7 +1137,7 @@ static int littlefs_init(void)
 
 	if (rc == 0) {
 		struct fs_mount_t **mpi = partitions;
-
+		k_sleep(K_MSEC(50));
 		while (mpi < (partitions + ARRAY_SIZE(partitions))) {
 			mount_init(*mpi++);
 		}
